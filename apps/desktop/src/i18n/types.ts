@@ -1671,6 +1671,7 @@ export interface Translations {
       openInSplit: string
       copyIdFailed: string
       sessionActions: string
+      markRead: string
       sessionRunning: string
       needsInput: string
       waitingForAnswer: string
@@ -1703,6 +1704,7 @@ export interface Translations {
       working: string
       done: string
     }
+    markAllRead: string
   }
 
   composer: {
