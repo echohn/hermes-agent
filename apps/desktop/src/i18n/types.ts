@@ -1659,6 +1659,9 @@ export interface Translations {
     row: {
       pin: string
       unpin: string
+      markUnread: string
+      markRead: string
+      unreadFailed: string
       copyId: string
       export: string
       branchFrom: string

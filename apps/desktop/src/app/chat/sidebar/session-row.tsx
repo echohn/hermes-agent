@@ -51,10 +51,14 @@ interface SidebarSessionRowProps extends React.ComponentProps<'div'> {
   branchStem?: string
   isPinned: boolean
   isSelected: boolean
+  /** Backend-derived read state — same value the dot paints. */
+  unread: boolean
   onArchive: () => void
   onBranch?: () => void
   onDelete: () => void
   onPin: () => void
+  /** Toggle the persisted read-state watermark. */
+  onToggleUnread: () => void
   onResume: () => void
   reorderable?: boolean
   dragging?: boolean
@@ -115,10 +119,12 @@ function SidebarSessionRowImpl({
   branchStem,
   isPinned,
   isSelected,
+  unread,
   onArchive,
   onBranch,
   onDelete,
   onPin,
+  onToggleUnread,
   onResume,
   reorderable = false,
   dragging = false,
@@ -274,10 +280,12 @@ function SidebarSessionRowImpl({
         onBranch={onBranch}
         onDelete={onDelete}
         onPin={onPin}
+        onToggleUnread={onToggleUnread}
         pinned={isPinned}
         profile={session.profile}
         sessionId={session.id}
         title={title}
+        unread={unread}
       >
         <Button
           aria-label={r.sessionActions}
@@ -301,7 +309,9 @@ function SidebarSessionRowImpl({
       onBranch={onBranch}
       onDelete={onDelete}
       onPin={onPin}
+      onToggleUnread={onToggleUnread}
       pinned={isPinned}
+      unread={unread}
       profile={session.profile}
       sessionId={session.id}
       title={title}
@@ -521,6 +531,7 @@ function rowPropsEqual(a: SidebarSessionRowProps, b: SidebarSessionRowProps): bo
     a.session === b.session &&
     a.isPinned === b.isPinned &&
     a.isSelected === b.isSelected &&
+    a.unread === b.unread &&
     a.branchStem === b.branchStem &&
     a.reorderable === b.reorderable &&
     a.dragging === b.dragging &&
